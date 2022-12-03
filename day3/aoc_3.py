@@ -6,14 +6,10 @@ with open('aoc_3_input.txt', 'r') as infile:
     for line in infile:
         line = line.strip()
 
-        for i in range(0, len(line)//2):
-            for j in range(len(line)//2, len(line)):
-                if line[i] == line[j]:
-                    duplicate_letter = line[i]
-                    break
-
-        sum_of_priorities += (priority_string.index(duplicate_letter)+1)
-
+        for letter in line[:len(line)//2]:
+            if letter in line[len(line)//2:]:
+                sum_of_priorities += priority_string.index(letter)+1
+                break
     print(sum_of_priorities)
 
 
