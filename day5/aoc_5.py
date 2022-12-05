@@ -31,8 +31,7 @@ with open('aoc_5_input.txt', 'r') as infile:
                 crate_setup = False
 
         if crate_setup is False:
-            instruction_search = re.search(
-                r'move\s(\d+)\sfrom\s(\d+)\sto\s(\d+)', line)
+            instruction_search = re.search(r'move\s(\d+)\sfrom\s(\d+)\sto\s(\d+)', line)
             if instruction_search is not None:
                 moving_number = int(instruction_search.group(1))  # 1
                 crate_start_index = int(instruction_search.group(2)) - 1  # 1
