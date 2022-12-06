@@ -1,4 +1,6 @@
 import re
+import time
+start_time = time.time()
 
 
 def transpose_reverse(matrix):
@@ -14,9 +16,16 @@ def transpose_reverse(matrix):
 
 crate_setup = True
 crate_matrix = []
+read_progress_index = 0
+percent_read = 0
 with open('aoc_5_input.txt', 'r') as infile:
     for line in infile:
-
+        read_progress_index +=1
+        if read_progress_index == 30000:
+            percent_read += 1
+            print(f'{percent_read}% of lines read')
+            read_progress_index = 0
+            
         if crate_setup:
             column_search = re.search(r'(\[[A-Z]\]|\s{3})(?:\s{1})', line)
             if column_search is not None:
@@ -31,8 +40,7 @@ with open('aoc_5_input.txt', 'r') as infile:
                 crate_setup = False
 
         if crate_setup is False:
-            instruction_search = re.search(
-                r'move\s(\d+)\sfrom\s(\d+)\sto\s(\d+)', line)
+            instruction_search = re.search(r'move\s(\d+)\sfrom\s(\d+)\sto\s(\d+)', line)
             if instruction_search is not None:
                 moving_number = int(instruction_search.group(1))  # 1
                 crate_start_index = int(instruction_search.group(2)) - 1  # 1
@@ -76,3 +84,5 @@ for row in modified_crate_matrix_2:
         result_string += row[-1]
 print("part 2 answer:")
 print(result_string)
+
+print("--- %s seconds ---" % (time.time() - start_time))
