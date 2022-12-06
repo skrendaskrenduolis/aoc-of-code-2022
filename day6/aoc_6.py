@@ -21,3 +21,4 @@ with open('aoc_6_input.txt','r') as infile:
                 break
     print(processed_chars_for_packets)
     print(processed_chars_for_messages)
+#
